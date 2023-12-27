@@ -2,8 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('SCM') {
-            checkout scm
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
         }
 
         stage('Build and Push Docker Image') {
@@ -12,8 +14,10 @@ pipeline {
                     usernamePassword(usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_TOKEN')
                 ]) {
                     sh "docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_TOKEN}"
+                    echo "Docker Login Successful"
                     sh "DOCKER_BUILDKIT=1 docker build -t sovu/gin-api -f cmd/server/Dockerfile ."
                     sh "docker push sovu/gin-api"
+                    
                 }
             }
         }
