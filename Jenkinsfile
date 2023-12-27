@@ -2,10 +2,8 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
+        stage('SCM') {
+            checkout scm
         }
 
         stage('Build and Push Docker Image') {
