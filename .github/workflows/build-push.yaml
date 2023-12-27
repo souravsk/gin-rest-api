@@ -13,6 +13,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build Docker image
-        run: docker build -t sovu/gin-api /cmd/server/
+        run: docker build . -t sovu/gin-api -f /cmd/server/Dockerfile
       - name: Push Docker image
         run: docker push sovu/gin-api
