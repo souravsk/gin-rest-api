@@ -25,7 +25,7 @@ pipeline {
             steps {
                 script {
                     withCredentials([
-                        usernamePassword(credentialsId: DOCKERHUB_USERNAME_CREDENTIALS, usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_TOKEN')
+                        usernamePassword(credentialsId: DOCKERHUB_TOKEN_CREDENTIALS, usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_TOKEN')
                     ]) {
                         sh "docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_TOKEN_CREDENTIALS}"
                         // Your build and push steps using DOCKERHUB_USERNAME and DOCKERHUB_TOKEN_CREDENTIALS
